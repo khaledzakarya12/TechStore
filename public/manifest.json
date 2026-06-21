@@ -1,0 +1,20 @@
+{
+  "short_name": "TechStore",
+  "name": "TechStore App",
+  "icons": [
+    {
+      "src": "/techstore_logo_concept_a.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/techstore_logo_concept_a.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2259d1",
+  "background_color": "#fffff"
+}

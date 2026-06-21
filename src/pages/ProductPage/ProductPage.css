@@ -1,0 +1,753 @@
+/* ============================================================
+   TechStore — Products Page CSS
+   Theme: Clean Light · Apple-like Minimal
+   Responsive: mobile-first, breakpoints 480 / 768 / 1200px
+   ============================================================ */
+
+/* ── CSS VARIABLES ── */
+:root {
+  /* ── BACKGROUNDS ── */
+  --bg:            #ffffff;
+  --bg2:           #f9fafb;
+  --bg3:           #f3f4f6;
+
+  /* ── CARDS ── */
+  --card-bg:       #ffffff;
+  --card-border:   rgba(0, 0, 0, 0.08);
+
+  /* ── ACCENTS (used sparingly, never as a glow) ── */
+  --accent:        #2563eb;
+  --accent2:       #4f46e5;
+  --accent-glow:   rgba(0, 0, 0, 0.06);
+
+  /* ── TEXT SYSTEM ── */
+  --text:          #111111;
+  --text-muted:    #555555;
+  --text-dim:      #999999;
+
+  /* ── UI ── */
+  --radius:        14px;
+  --radius-sm:     8px;
+
+  /* ── EFFECTS ── */
+  --transition:    0.2s ease;
+}
+
+/* ── RESET ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── PAGE ROOT ── */
+.ts-page {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════════════════════
+   HERO BAR
+════════════════════════════════════════════ */
+.ts-hero-bar {
+  background: var(--bg2);
+  padding: 56px 24px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* subtle gray glow behind the title */
+.ts-hero-bar::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 220px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.035) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ts-hero-bar__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.ts-hero-bar__title {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.ts-hero-bar__sub {
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* ════════════════════════════════════════════
+   STICKY BAR  (search + category nav)
+════════════════════════════════════════════ */
+.ts-sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  padding: 12px 16px;
+}
+
+.ts-sticky-bar__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ════════════════════════════════════════════
+   SEARCH BAR
+════════════════════════════════════════════ */
+.ts-search {
+  width: 100%;
+}
+
+.ts-search__inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 40px;
+  padding: 0 16px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.ts-search__inner:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.ts-search__icon {
+  color: var(--text-dim);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.ts-search__input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  padding: 11px 0;
+}
+
+.ts-search__input::placeholder {
+  color: var(--text-dim);
+}
+
+.ts-search__clear {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color var(--transition);
+}
+
+.ts-search__clear:hover {
+  color: var(--text);
+}
+
+/* ════════════════════════════════════════════
+   CATEGORY NAV
+════════════════════════════════════════════ */
+.ts-cat-nav {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ts-cat-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.ts-cat-nav__inner {
+  display: flex;
+  gap: 6px;
+  padding: 2px 0;
+  width: max-content;
+}
+
+.ts-cat-nav__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 40px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition),
+              background var(--transition), box-shadow var(--transition);
+}
+
+.ts-cat-nav__btn:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: var(--text);
+}
+
+.ts-cat-nav__btn--active {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+/* ════════════════════════════════════════════
+   MAIN CONTENT
+════════════════════════════════════════════ */
+.ts-main {
+  padding: 32px 16px;
+}
+
+.ts-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Search label ── */
+.ts-search-label {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.ts-search-label strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ════════════════════════════════════════════
+   CATEGORY SECTION
+════════════════════════════════════════════ */
+.ts-category {
+  margin-bottom: 56px;
+}
+
+.ts-category__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.ts-category__title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ts-category__emoji {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.ts-category__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.ts-category__count {
+  font-size: 12px;
+  color: var(--text-dim);
+  background: var(--bg2);
+  border: 1px solid var(--card-border);
+  padding: 3px 12px;
+  border-radius: 40px;
+}
+
+/* ════════════════════════════════════════════
+   PRODUCT GRID
+════════════════════════════════════════════ */
+.ts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+/* ════════════════════════════════════════════
+   PRODUCT CARD
+════════════════════════════════════════════ */
+.ts-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform var(--transition), border-color var(--transition),
+              box-shadow var(--transition);
+}
+
+.ts-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Card image ── */
+.ts-card__image-link {
+  display: block;
+  text-decoration: none;
+}
+
+.ts-card__image-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--bg2);
+  overflow: hidden;
+}
+
+.ts-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.ts-card:hover .ts-card__image {
+  transform: scale(1.04);
+}
+
+.ts-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  opacity: 0.2;
+}
+
+/* ── Badges ── */
+.ts-card__badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.ts-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 40px;
+  letter-spacing: 0.2px;
+}
+
+.ts-badge--new {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.ts-badge--cat {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+}
+
+/* ── Card body ── */
+.ts-card__body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.ts-card__name-link {
+  text-decoration: none;
+}
+
+.ts-card__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  transition: color var(--transition);
+}
+
+.ts-card__name-link:hover .ts-card__name {
+  color: var(--accent);
+}
+
+.ts-card__desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ts-card__price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.ts-card__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* ════════════════════════════════════════════
+   BUTTONS
+════════════════════════════════════════════ */
+.ts-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+  flex: 1;
+  transition: background var(--transition), transform var(--transition),
+              box-shadow var(--transition), color var(--transition),
+              border-color var(--transition), opacity var(--transition);
+}
+
+/* Primary — black background, white text */
+.ts-btn--primary {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.ts-btn--primary:hover:not(:disabled) {
+  background: #262626;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.ts-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.ts-btn--primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ts-btn--primary.ts-btn--added {
+  background: #16a34a;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.25);
+}
+
+/* Ghost — white background, black border */
+.ts-btn--ghost {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.ts-btn--ghost:hover {
+  border-color: rgba(0, 0, 0, 0.35);
+  color: #000000;
+  background: #f7f7f7;
+}
+
+/* Outline */
+.ts-btn--outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.ts-btn--outline:hover {
+  background: rgba(37, 99, 235, 0.06);
+}
+
+/* Large */
+.ts-btn--lg {
+  padding: 13px 32px;
+  font-size: 14px;
+  border-radius: 40px;
+  flex: 0 0 auto;
+}
+
+/* Spinner */
+.ts-btn__spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: ts-spin 0.7s linear infinite;
+}
+
+@keyframes ts-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ════════════════════════════════════════════
+   SHOW MORE
+════════════════════════════════════════════ */
+.ts-show-more {
+  text-align: center;
+  margin-top: 28px;
+}
+
+/* ════════════════════════════════════════════
+   EMPTY STATE
+════════════════════════════════════════════ */
+.ts-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-dim);
+}
+
+.ts-empty__icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.25;
+}
+
+.ts-empty__text {
+  font-size: 14px;
+}
+
+/* ════════════════════════════════════════════
+   SKELETON CARDS
+════════════════════════════════════════════ */
+.ts-card--skeleton {
+  pointer-events: none;
+}
+
+@keyframes ts-shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.ts-skeleton {
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.04) 25%,
+    rgba(0, 0, 0, 0.09) 50%,
+    rgba(0, 0, 0, 0.04) 75%
+  );
+  background-size: 1200px 100%;
+  animation: ts-shimmer 1.6s ease-in-out infinite;
+}
+
+.ts-card__image-wrap.ts-skeleton {
+  border-radius: 0;
+}
+
+.ts-skeleton--badge  { height: 18px; width: 60px; }
+.ts-skeleton--title  { height: 16px; width: 80%; }
+.ts-skeleton--sub    { height: 12px; width: 60%; }
+.ts-skeleton--price  { height: 22px; width: 45%; }
+.ts-skeleton--btn    { height: 36px; width: 100%; border-radius: var(--radius-sm); }
+
+/* ════════════════════════════════════════════
+   CART ICON
+════════════════════════════════════════════ */
+.ts-cart-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
+  text-decoration: none;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+}
+
+.ts-cart-icon:hover {
+  color: var(--accent);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.ts-cart-icon__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════ */
+.ts-footer {
+  border-top: 1px solid var(--card-border);
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  margin-top: 16px;
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .ts-hero-bar {
+    padding: 36px 16px 32px;
+  }
+
+  .ts-hero-bar__title {
+    font-size: 26px;
+  }
+
+  .ts-hero-bar__sub {
+    font-size: 14px;
+  }
+
+  .ts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .ts-category__title {
+    font-size: 17px;
+  }
+
+  .ts-card__actions {
+    flex-direction: column;
+  }
+
+  .ts-btn {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .ts-hero-bar {
+    padding: 28px 14px;
+  }
+
+  .ts-hero-bar__title {
+    font-size: 22px;
+  }
+
+  .ts-hero-bar__sub {
+    font-size: 13px;
+  }
+
+  .ts-main {
+    padding: 20px 12px;
+  }
+
+  .ts-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .ts-card__body {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .ts-card__name {
+    font-size: 12px;
+  }
+
+  .ts-card__price {
+    font-size: 15px;
+  }
+
+  .ts-card__desc {
+    display: none; /* save space on tiny screens */
+  }
+
+  .ts-category__title {
+    font-size: 15px;
+  }
+
+  .ts-category__emoji {
+    font-size: 18px;
+  }
+
+  .ts-sticky-bar {
+    padding: 10px 12px;
+  }
+}
+
+/* Wide screens */
+@media (min-width: 1024px) {
+  .ts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  .ts-sticky-bar__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ts-search {
+    max-width: 360px;
+    flex-shrink: 0;
+  }
+
+  .ts-cat-nav {
+    flex: 1;
+  }
+}

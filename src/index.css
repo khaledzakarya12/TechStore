@@ -1,0 +1,19 @@
+@import "./components//navbar//navbar.css";
+@import "./pages/Authentication//Authentication.css";
+@import "./pages//Dashboard/Dashboard.css";
+@import "./pages//ProductPage/ProductPage.css";
+@import "./pages//ProductPagedetails/ProductPagedetails.css";
+@import "./pages//Cart/Cart.css";
+@import "./pages//Home/Home.css";
+@import "./pages/Categories/categories.css";
+@import "./pages/Checkout/checkout.css";
+@import "./pages/Contact/contact.css";
+@import "./pages/About/About.css";
+@import "./pages/Myorder/Myorder.css";
+*{
+
+
+  margin: 0;  
+  padding: 0;
+  box-sizing: border-box;
+}
